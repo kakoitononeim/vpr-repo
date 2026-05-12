@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photographer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Photographer Portfolio</h1>
+</header>
+
+<nav aria-label="Main navigation">
+    <ul>
+        <li><a href="#" aria-current="page">Prices</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Contacts</a></li>
+        <li><a href="#">Client reviews</a></li>
+    </ul>
+</nav>
+
+<div id="app">
+
+<div id="app">
+
+    <main id="gallery">
+
+        <photo-card
+            v-for="(photo, index) in photos"
+            :key="index"
+
+            :photo="photo"
+
+            @open="openLightbox(index)"
+        >
+        </photo-card>
+
+    </main>
+
+    <!-- LIGHTBOX -->
+    <div
+        class="lightbox"
+
+        v-if="lightboxOpen"
+
+        @click="closeOnBackground"
+    >
+
+        <button
+            class="nav-btn prev"
+
+            @click.stop="prevImage"
+        >
+            ←
+        </button>
+
+        <img
+            :src="photos[currentIndex].src"
+
+            :alt="photos[currentIndex].alt"
+        >
+
+        <button
+            class="nav-btn next"
+
+            @click.stop="nextImage"
+        >
+            →
+        </button>
+
+    </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div
+    class="lightbox"
+    v-if="lightboxOpen"
+    @click="closeOnBackground"
+>
+
+    <button
+        class="nav-btn prev"
+        @click.stop="prevImage"
+    >
+        ←
+    </button>
+
+    <img
+        :src="photos[currentIndex].src"
+        :alt="photos[currentIndex].alt"
+    >
+
+    <button
+        class="nav-btn next"
+        @click.stop="nextImage"
+    >
+        →
+    </button>
+
+</div>
+
+</div>
+
+<footer>
+    <p>(c) 2026 Photographerrrr</p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
